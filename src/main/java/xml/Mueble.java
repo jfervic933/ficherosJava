@@ -1,5 +1,7 @@
 package xml;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -9,6 +11,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 // Anotación @XmlRootElement, nombre de la etiqueta XML raíz.
 @XmlRootElement(name = "mueble")
+// Anotación @XmlAccesorType define el elemento que usará JAXB durante el 
+// procesamiento de datos (en este caso por atributo)
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Mueble {
 
     private String id;
