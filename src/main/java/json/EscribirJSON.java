@@ -3,9 +3,11 @@ package json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.time.LocalDate;
 
 /**
  *
@@ -17,6 +19,10 @@ public class EscribirJSON {
         
         ObjectMapper mapeador = new ObjectMapper();
         
+        // Permite a mapeador usar fechas según java time
+        mapeador.registerModule(new JavaTimeModule());
+        
+        // Formato JSON bien formateado. Si se comenta, el fichero queda minificado
         mapeador.configure(SerializationFeature.INDENT_OUTPUT, true);
 
         // Escribe en un fichero JSON el catálogo de muebles
@@ -30,12 +36,12 @@ public class EscribirJSON {
     public static ArrayList<MuebleVO> generarCatalogo(){
         ArrayList<MuebleVO> lista = new ArrayList<>();
 
-        lista.add(new MuebleVO("C4", "Mesa comedor", 1, 2, 3));
-        lista.add(new MuebleVO("C5", "Mesa cocina", 3, 1, 2.2));
-        lista.add(new MuebleVO("C6", "Mesa terraza", 3, 3, 3));
-        lista.add(new MuebleVO("S1", "Silla madera", 0.5, 2, 3.3));
-        lista.add(new MuebleVO("S2", "Silla plástico", 0.5, 1.2, 3.3));
-        lista.add(new MuebleVO("S3", "Silla oficina", 2.5, 2, 1));
+        lista.add(new MuebleVO("C4", "Mesa comedor", 1, 2, 3, LocalDate.now()));
+        lista.add(new MuebleVO("C5", "Mesa cocina", 3, 1, 2.2, LocalDate.now()));
+        lista.add(new MuebleVO("C6", "Mesa terraza", 3, 3, 3, LocalDate.now()));
+        lista.add(new MuebleVO("S1", "Silla madera", 0.5, 2, 3.3, LocalDate.now()));
+        lista.add(new MuebleVO("S2", "Silla plástico", 0.5, 1.2, 3.3, LocalDate.now()));
+        lista.add(new MuebleVO("S3", "Silla oficina", 2.5, 2, 1, LocalDate.now()));
         
         return lista;
     }

@@ -2,6 +2,7 @@
 package json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class LeerJSON {
      */
     public static void main(String[] args) throws IOException {
         ObjectMapper mapeador = new ObjectMapper();
+        mapeador.registerModule(new JavaTimeModule());
         
         ArrayList<MuebleVO> catalogo = mapeador.readValue(new File("catalogoMuebles.json"),
                     mapeador.getTypeFactory().constructCollectionType(ArrayList.class, MuebleVO.class));

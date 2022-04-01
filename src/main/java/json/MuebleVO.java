@@ -6,6 +6,8 @@
 
 package json;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author JCarlos
@@ -18,13 +20,15 @@ public class MuebleVO {
     private Double ancho ;
     private Double alto;
     private Double profundo;
+    private LocalDate fechaFabricacion;
 
-    public MuebleVO(String id, String descripcion, double ancho, double alto, double profundo) {
+    public MuebleVO(String id, String descripcion, double ancho, double alto, double profundo, LocalDate fecha) {
         this.id = id;
         this.descripcion = descripcion;
         this.ancho = ancho;
         this.alto = alto;
         this.profundo = profundo;
+        this.fechaFabricacion = fecha;
     }
 
     public MuebleVO (){
@@ -67,7 +71,7 @@ public class MuebleVO {
 
     @Override
     public String toString() {
-        return id + ";" + descripcion + ";" + ancho + ";" + alto + ";" + profundo;
+        return "MuebleVO{" + "id=" + id + ", descripcion=" + descripcion + ", ancho=" + ancho + ", alto=" + alto + ", profundo=" + profundo + ", fechaFabricacion=" + fechaFabricacion + '}';
     }
 
     public String getDescripcion() {
@@ -77,5 +81,14 @@ public class MuebleVO {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    public LocalDate getFechaFabricacion() {
+        return fechaFabricacion;
+    }
+
+    public void setFechaFabricacion(LocalDate fechaFabricacion) {
+        this.fechaFabricacion = fechaFabricacion;
+    }
     
+        
 }
