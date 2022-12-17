@@ -19,16 +19,18 @@ import java.util.List;
 public class LeerFicheroClaseFiles {
 
     public static void main(String[] args) {
-        List<String> lines=new ArrayList<>();
+        List<String> lineas=new ArrayList<>();
         try {
-            lines = Files.readAllLines(Paths.get("RegAlum.csv"),
+            lineas = Files.readAllLines(Paths.get("RegAlum.csv"),
                     StandardCharsets.UTF_8);
         } catch (IOException ex) {
             System.out.println("Error leyendo el fichero");
         }
-        for (String line : lines) {
-            System.out.println(line);
+        for (String linea : lineas) {
+            System.out.println(linea);
         }
     }
+    
+    
 
 }
