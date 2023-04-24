@@ -58,6 +58,8 @@ public class SistemaFicheros {
         System.out.println("---------------");
         // Listar el directorio actual y subdirectorios
         listarTodo(".");
+        // Mostrar recursivamente
+        mostrarFicheros(new File(".");
 
     }
 
@@ -163,6 +165,33 @@ public class SistemaFicheros {
         } catch (IOException e) {
             System.out.println("Error listando directorios");
         }
+    }
+    
+    // Método recursivo para mostrar archivos y carpetas
+    public static void mostrarFicheros(File file){
+        List<File> ficheros = new ArrayList<>();
+        List<File> carpetas = new ArrayList<>();
+        
+        String texto = file.isDirectory()?"D - "+file.getName():file.getName();
+        System.out.println(texto);
+        
+        if (file.isDirectory()){ // Directorio - Tiene hijos
+            File[] listaHijos = file.listFiles();
+            // Por cada elemento separo en archivos y directorios
+            for (File fichero : listaHijos) {
+                if (fichero.isFile()){
+                    ficheros.add(fichero);
+                } else {
+                    carpetas.add(fichero);
+                }
+            }
+            // Ordena la lista de ficheros por nombre
+            ficheros.sort((f1,f2)->f1.getName().compareTo(f2.getName()));
+            // Muestra los nombres de los ficheros
+            ficheros.forEach(f->System.out.println("\t" + f.getName()));
+            // Por cada carpeta, llama a la recursividad
+            carpetas.forEach(c->mostrarFicheros(c));
+        } 
     }
 
 }
